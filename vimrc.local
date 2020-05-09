@@ -35,5 +35,3 @@ map <Leader>z :bp <Return>
 map <Leader>x :bn <Return>
 map <Leader>1 :!
 map <Leader>r :! bundle exec rspec <Return>
-
-

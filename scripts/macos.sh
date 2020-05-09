@@ -32,6 +32,7 @@ brew install nmap
 brew install pass
 brew install plantuml
 brew install w3m
+brew install todoman
 
 
 # Services
