@@ -1,10 +1,10 @@
-# ./.tmuxinator.yml
+# /Users/x0100100/.config/tmuxinator/lab-nltk.yml
 
-name: calendar
-root: ~/Desktop/calendar
+name: lab-nltk
+root: ~/
 
 # Optional tmux socket
-# socket_name: calendar.tmux.sock
+# socket_name: foo
 
 # Note that the pre and post options have been deprecated and will be replaced by
 # project hooks.
@@ -22,7 +22,7 @@ root: ~/Desktop/calendar
 # on_project_stop: command
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: tmux source ~/.tmux.conf && tmux source ~/.tmux.conf.local
+# pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -40,15 +40,11 @@ root: ~/Desktop/calendar
 # attach: false
 
 windows:
-  - editor: vim
-  - shell: script -ar tmp/history-$(date +%s)
-  - web: browsh
-  - calendar: calcurse -D data/shared/
-  - services:
-      layout: main-horizontal
+  - editor:
+      layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - echo 'logs for servie'
-        - echo 'logs for service'
+        - vim
+        - python
