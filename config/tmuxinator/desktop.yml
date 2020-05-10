@@ -1,10 +1,10 @@
 # ./.tmuxinator.yml
 
-name: desktop
-root: ~/Desktop
+name: calendar
+root: ~/Desktop/calendar
 
 # Optional tmux socket
-# socket_name: desktop
+# socket_name: calendar.tmux.sock
 
 # Note that the pre and post options have been deprecated and will be replaced by
 # project hooks.
@@ -40,10 +40,10 @@ root: ~/Desktop
 # attach: false
 
 windows:
-  - editor: vim ~/Desktop
-  - shell: script -ar ~/Desktop/calendar/notes/$(date +%s)
+  - editor: vim
+  - shell: script -ar tmp/history-$(date +%s)
   - web: browsh
-  - calendar: calcurse
+  - calendar: calcurse -D data/shared/
   - services:
       layout: main-horizontal
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
