@@ -20,6 +20,7 @@ brew install jq
 brew install yq
 brew install python
 brew install python3
+brew install node
 
 
 # Tools
@@ -40,3 +41,7 @@ brew install calcurse
 brew install tmux
 brew install tmuxinator
 brew install nginx
+
+# misc
+
+brew install reattach-to-user-namespace
