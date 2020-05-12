@@ -1,7 +1,7 @@
-# /Users/x0100100/.config/tmuxinator/code-golf.yml
+# /Users/x0100100/.config/tmuxinator/algorithms.yml
 
-name: code-golf
-root: ~/Desktop/javascript-algorithms
+name: algorithms
+root: ~/Desktop/self_study/algorithms
 
 # Optional tmux socket
 # socket_name: foo

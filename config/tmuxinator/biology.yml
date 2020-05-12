@@ -1,7 +1,7 @@
-# /Users/x0100100/.config/tmuxinator/calendar.yml
+# /Users/x0100100/.config/tmuxinator/biology.yml
 
-name: calendar
-root: ~/Desktop/self_study/calendar
+name: biology
+root: ~/Desktop/self_study/biology
 
 # Optional tmux socket
 # socket_name: foo

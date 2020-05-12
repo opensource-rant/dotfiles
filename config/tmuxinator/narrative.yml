@@ -1,7 +1,7 @@
-# /Users/x0100100/.config/tmuxinator/calendar.yml
+# /Users/x0100100/.config/tmuxinator/narrative.yml
 
-name: calendar
-root: ~/Desktop/self_study/calendar
+name: narrative
+root: ~/Desktop/self_study/narrative
 
 # Optional tmux socket
 # socket_name: foo
