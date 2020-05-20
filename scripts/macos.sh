@@ -34,6 +34,7 @@ brew install pass
 brew install plantuml
 brew install w3m
 brew install todoman
+brew install bats
 
 
 # Services
