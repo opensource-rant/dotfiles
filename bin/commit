@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+git status -s \
+| jq -rR 'split(" ")[-1] as $file | @sh "git add \($file); git commit -m \($file)"' \
+> /tmp/commit.sh
+
+sh /tmp/commit.sh
+
+rm -f /tmp/commit.sh
