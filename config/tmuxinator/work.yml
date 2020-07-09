@@ -1,0 +1,7 @@
+name: work
+root: ~/<%= @args[0] %>
+on_project_start: start-work ~/<%= @args[0] %> ~/.ssh/<%= @args[1] %>
+on_project_exit: stop-work ~/<%= @args[0] %> ~/.ssh/<%= @args[1] %>
+windows:
+  - editor: vim
+  - shell: zsh
