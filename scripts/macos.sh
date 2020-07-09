@@ -36,6 +36,10 @@ brew install w3m
 brew install todoman
 brew install bats
 
+brew tap thoughtbot/formulae
+brew install rcm
+brew install restic
+
 
 # Services
 brew install calcurse
@@ -43,6 +47,3 @@ brew install tmux
 brew install tmuxinator
 brew install nginx
 
-# misc
-
-brew install reattach-to-user-namespace
