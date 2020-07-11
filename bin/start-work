@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+workdir=$1
+identity=$2
+
+ssh-add $identity
+timew start
+backup $workdir 
+

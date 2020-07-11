@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+workdir=$1
+
+timew stop
+
+commit
+git push
+backup $workdir 
+
