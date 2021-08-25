@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+pbpaste > /tmp/msg
+
+gpg --decrypt /tmp/msg
+
+rm -rf /tmp/msg
+
