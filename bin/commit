@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+logfile=/tmp/commit.log
+
 git status -s \
-| jq -rR 'split(" ")[-1] as $file | @sh "git add \($file); git commit -m \($file)@$(date +%s)"' \
-| sh
+| jq -rRf $(which fixup_commit) \
+| sh >>$logfile 2>&1
