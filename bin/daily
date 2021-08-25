@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+root=$1
+mtime=-1
+
+find $root -type d -mtime $mtime \
+| grep -v -E '.git+.' \
+| grep -v -E "^$1$" \
+| jq -sR | jq -c 'split("\n")[] | split("/")'
+
