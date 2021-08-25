@@ -1,12 +1,8 @@
 #!/usr/bin/env sh
 
-container=arthur-stace/tape
+work=$1
 
-important_data="$1 .timewarrior .ssh .gnupg .password-store"
+# source $work/.env
 
-for dir in $important_data; do
-  workdir=$(echo $dir | sed -e 's/\.//')
-
-  docker run -v $HOME/$dir:/$workdir -it $container backup /$workdir
-done
+restic backup $work
 
