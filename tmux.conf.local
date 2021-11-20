@@ -1,9 +1,6 @@
 ###########################
 #  Configuration
 ###########################
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # use 256 term for pretty colors
 set -g default-terminal "screen-256color"
@@ -55,8 +52,10 @@ bind -r K resize-pane -U 15
 bind -r L resize-pane -R 15
 
 # highlight current window
-set-option -g status-position bottom
 set -g status-right '#(npm test)'
+set -g @continuum-restore 'on'
+set -g @continuum-save-interval '20'
+set -g status-right 'Continuum status: #{continuum_status}'
 #### COLOUR (Solarized 256)
 
 # default statusbar colors
