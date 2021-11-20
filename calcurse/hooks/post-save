@@ -46,4 +46,4 @@
 # 	) >>caldav/log 2>&1 &
 # fi
 #
-commit
+commit && backup .git
