@@ -2,7 +2,16 @@
 
 work=$1
 
+# TODO
 # source $work/.env
+# source $work/.card
+# source $work/.stack
+actor=engineer
+project=infrastructure
+environment=development
 
-restic backup $work
+restic backup $work \
+  --tag actor:$actor \
+  --tag project:$project \
+  --tag environment:$environment \
 
