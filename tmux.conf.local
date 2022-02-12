@@ -52,10 +52,23 @@ bind -r K resize-pane -U 15
 bind -r L resize-pane -R 15
 
 # highlight current window
+# Options
+set -g @pomodoro_start '`'                          # Start a Pomodoro with tmux-prefix + p
+set -g @pomodoro_cancel '~'                         # Cancel a Pomodoro with tmux-prefix key + P
+
+set -g @pomodoro_mins 50                            # The duration of the pomodoro
+set -g @pomodoro_break_mins 20                      # The duration of the break after the pomodoro
+
+set -g @pomodoro_on " #[fg=$text_red]🍅 "           # The formatted output when the pomodoro is running
+set -g @pomodoro_complete " #[fg=$text_green]🍅 "   # The formatted output when the break is running
+
+set -g @pomodoro_notifications 'on'                 # Turn on/off desktop notifications
+set -g @pomodoro_sound 'Pop'                        # Sound for desktop notifications (Run `ls /System/Library/Sounds` for a list of sounds to use)
 set -g status-right '#(npm test)'
 set -g @continuum-restore 'on'
 set -g @continuum-save-interval '20'
-set -g status-right 'Continuum status: #{continuum_status}'
+# set -g status-right 'autosave: #{continuum_status}'
+set -g status-right "#(npm test) | #{pomodoro_status} | autosave #{continuum_status}"
 #### COLOUR (Solarized 256)
 
 # default statusbar colors
