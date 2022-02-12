@@ -1,4 +1,23 @@
 #!/usr/bin/env jq
 
-split(" ")[-1] as $file 
-| @sh "git add \($file); git commit --fixup :/\($file); git commit -m \($file)"
+fixup() {
+  title_match="${@:1}"
+
+  echo "\nThis operation will rebase:\n"
+
+  git --no-pager log --oneline "HEAD^{/$title_match}^..HEAD" --reverse
+
+  if [[ $? -ne 0 ]]; then
+    echo "\nCould not find a commit with title matching: \"$title_match\""
+    return
+  fi
+
+  echo
+  read -q "REPLY?Are you sure? "
+  echo
+
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    git commit --fixup ":/$title_match" && GIT_SEQUENCE_EDITOR=: git rebase --interactive --autostash --autosquash "HEAD^^{/$title_match}^"
+  fi
+}
