@@ -6,10 +6,7 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " Lightline setting
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'github',
-      \ }
-
+let g:lightline = { 'colorscheme': 'github' }
 
 " Keep undo history when switching buffers
 set hidden
@@ -37,3 +34,20 @@ map <Leader>z :bp <Return>
 map <Leader>x :bn <Return>
 map <Leader>1 :!
 map <Leader>r :! bundle exec rspec <Return>
+
+function! ActiveBuffers(tmux_pane_name)
+    let l:blist = getbufinfo({'bufloaded': 1, 'buflisted': 1})
+    let l:result = []
+    for l:item in l:blist
+        "skip unnamed buffers; also skip hidden buffers?
+        if empty(l:item.name)
+            continue
+        endif
+        call add(l:result, shellescape(l:item.name))
+    endfor
+    call writefile(l:result, a:tmux_pane_name)
+    return a:tmux_pane_name
+endfunction
+
+:command! -nargs=* AB :call ActiveBuffers(<q-args>)
+" map <Leader>G command! -nargs=* Xyz :call GetActiveBuffers(<q-args>) <Return>
