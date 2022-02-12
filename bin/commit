@@ -3,5 +3,5 @@
 logfile=/tmp/commit.log
 
 git status -s \
-| jq -rRf $(which fixup_commit) \
+| jq -rRf ~/.bin/commit.jq \
 | sh >>$logfile 2>&1
