@@ -45,7 +45,7 @@ function! ActiveBuffers(tmux_pane_name)
         endif
         call add(l:result, shellescape(l:item.name))
     endfor
-    call writefile(l:result, a:tmux_pane_name)
+    call system('pbcopy', l:result) ", a:tmux_pane_name)
     return a:tmux_pane_name
 endfunction
 
