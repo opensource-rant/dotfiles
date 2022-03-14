@@ -28,14 +28,8 @@ set t_Co=256
 colorscheme github
 
 
-" Shortcuts
-map <Leader>w :wa <Return>
-map <Leader>z :bp <Return>
-map <Leader>x :bn <Return>
-map <Leader>1 :!
-map <Leader>r :! bundle exec rspec <Return>
 
-function! ActiveBuffers(tmux_pane_name)
+function! StageCommit()
     let l:blist = getbufinfo({'bufloaded': 1, 'buflisted': 1})
     let l:result = []
     for l:item in l:blist
@@ -45,9 +39,15 @@ function! ActiveBuffers(tmux_pane_name)
         endif
         call add(l:result, shellescape(l:item.name))
     endfor
-    call system('pbcopy', l:result) ", a:tmux_pane_name)
-    return a:tmux_pane_name
+    call system('pbcopy', l:result)
+    call system('pbpaste | xargs git add')
+    return l:result
 endfunction
 
-:command! -nargs=* AB :call ActiveBuffers(<q-args>)
-" map <Leader>G command! -nargs=* Xyz :call GetActiveBuffers(<q-args>) <Return>
+" Shortcuts
+:command! -nargs=* StageCommit :call StageCommit()
+map <Leader>l :ls <Return>
+map <Leader>s :StageCommit <Return>
+map <Leader>c :G commit <Return>
+map <Leader>P :G push <Return>
+map <Leader>g :G <Return>

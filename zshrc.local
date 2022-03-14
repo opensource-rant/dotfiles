@@ -1,8 +1,5 @@
 source $HOME/.zsh/prompt.zsh
 
-eval `ssh-agent -s`
-eval `ssh-add -K ~/.ssh/id_rsa`
-
 export PATH=$PATH:/usr/local/bin
 
 global_ruby_version=3.0.1
