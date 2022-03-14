@@ -2,11 +2,12 @@
 #  Configuration
 ###########################
 
+
 # use 256 term for pretty colors
 set -g default-terminal "screen-256color"
 
 # increase scroll-back history
-set -g history-limit 5000
+# set -g history-limit 5000
 
 # use vim key bindings
 setw -g mode-keys vi
@@ -53,31 +54,19 @@ bind -r L resize-pane -R 15
 
 # highlight current window
 # Options
-set -g @pomodoro_start '`'                          # Start a Pomodoro with tmux-prefix + p
-set -g @pomodoro_cancel '~'                         # Cancel a Pomodoro with tmux-prefix key + P
-
-set -g @pomodoro_mins 50                            # The duration of the pomodoro
-set -g @pomodoro_break_mins 20                      # The duration of the break after the pomodoro
-
-set -g @pomodoro_on " #[fg=$text_red]🍅 "           # The formatted output when the pomodoro is running
-set -g @pomodoro_complete " #[fg=$text_green]🍅 "   # The formatted output when the break is running
-
-set -g @pomodoro_notifications 'on'                 # Turn on/off desktop notifications
-set -g @pomodoro_sound 'Pop'                        # Sound for desktop notifications (Run `ls /System/Library/Sounds` for a list of sounds to use)
 set -g status-right '#(npm test)'
 set -g @continuum-restore 'on'
 set -g @continuum-save-interval '20'
-# set -g status-right 'autosave: #{continuum_status}'
-set -g status-right "#(npm test) | #{pomodoro_status} | autosave #{continuum_status}"
+# set -g status-right "#(npm test) | #{pomodoro_status} | autosave #{continuum_status}"
 #### COLOUR (Solarized 256)
 
 # default statusbar colors
-# set-option -g status-bg colour235 #base02
-# set-option -g status-fg colour136 #yellow
+set-option -g status-bg colour0 #black
+set-option -g status-fg colour255 #white
 #
 # # pane number display
-# set-option -g display-panes-active-colour colour33 #blue
-# set-option -g display-panes-colour colour166 #orange
+set-option -g display-panes-active-colour colour33 #blue
+set-option -g display-panes-colour colour166 #orange
 #
 # clock
 set-window-option -g clock-mode-colour colour64 #green
@@ -85,3 +74,31 @@ set-window-option -g clock-mode-colour colour64 #green
 # tmuxinator config
 set-window-option -g pane-base-index 1
 
+# set -g pane-border-format "#{pane_current_command}"
+###############
+# pane border #
+###############
+# set -g pane-border-status bottom
+#colors for pane borders
+# setw -g pane-border-style fg=green,bg=black
+setw -g pane-active-border-style fg=colour255,bg=black
+setw -g automatic-rename off
+set -g pane-border-status top
+setw -g pane-border-format ' #{pane_title} | #{pane_current_path} '
+set -g @resurrect-capture-pane-contents 'on'
+set -g @resurrect-strategy-vim 'session'
+set -g @continuum-restore 'on'
+set -g @continuum-save-interval '20'
+# active pane normal, other shaded out​
+# setw -g window-style fg=colour28,bg=colour16
+# setw -g window-active-style fg=colour46,bg=colour16
+# bind-key C-1 select-pane -t 1
+
+set-option -g status-position top
+# set -g status-right "%H:%M"
+set -g window-status-current-style bg=white,fg=black
+# set -g status-right ' | %H:%M'
+set -g status-right '#{prefix_highlight} %H:%M | #{continuum_status} | $ACTOR'
+# Local config
+if-shell "[ -f ~/.tmux.local.conf ]" 'source ~/.tmux.local.conf'
+if-shell "[ -f ~/.tmux.$ACTOR.conf ]" 'source ~/.tmux.$ACTOR.conf'
