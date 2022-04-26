@@ -6,7 +6,10 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " Lightline setting
 set noshowmode
-let g:lightline = { 'colorscheme': 'github' }
+function! LightlineObsessionStatus()
+  return '%{ObsessionStatus()}'
+endfunction
+let g:lightline = { 'colorscheme': 'github', 'component': { 'session': 'LightlineObsessionStatus' } }
 
 " Keep undo history when switching buffers
 set hidden
@@ -51,3 +54,4 @@ map <Leader>s :StageCommit <Return>
 map <Leader>c :G commit <Return>
 map <Leader>P :G push <Return>
 map <Leader>g :G <Return>
+map <silent> <Leader>d :bd<Return>
