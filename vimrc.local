@@ -1,11 +1,11 @@
 " Write less code!
 set nowrap
 let g:auto_save = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
-
-" Lightline setting
-" set noshowmode
+let g:auto_save_events = ["CursorHold"]
+"
+"
+" " Lightline setting
+set noshowmode
 " function! LightlineObsessionStatus()
 "   return '%{ObsessionStatus()}'
 " endfunction
@@ -13,46 +13,67 @@ let g:lightline = { 'colorscheme': 'github' } "'component': { 'session': 'Lightl
 
 " Keep undo history when switching buffers
 set hidden
-
-
-" Aliases
-cnoreabbrev Qa qa
-cnoreabbrev Wqa wqa
+"
+"
+" " Aliases
+" cnoreabbrev Qa qa
+" cnoreabbrev Wqa wqa
 map ; :
-map :nt :NERDTree
-
-
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+" map :nt :NERDTree
+"
+"
 " Relative Linenumbers
 set relativenumber
-
-
-" Set the colorschemes.
+"
+"
+" " Set the colorschemes.
 set t_Co=256
 colorscheme github
 
 
 
 function! StageCommit()
-    let l:blist = getbufinfo({'bufloaded': 1, 'buflisted': 1})
-    let l:result = []
-    for l:item in l:blist
-        "skip unnamed buffers; also skip hidden buffers?
-        if empty(l:item.name)
-            continue
-        endif
-        call('Git add', shellescape(l:item.name))
-    endfor
-    return 1
+"     let l:blist = getbufinfo({'bufloaded': 1, 'buflisted': 1})
+"     let l:result = []
+"     for l:item in l:blist
+"         "skip unnamed buffers; also skip hidden buffers?
+"         if empty(l:item.name)
+"             continue
+"         endif
+"         let l:file = l:item.name
+"         Git add l:file
+"     endfor
+"     " call system('pbcopy', l:result)
+"     " call system('pbpaste | xargs git add')
+"     return 1
+" let &bg=(&bg=='light'?'dark':'light')
+" set background=bg
+endfunction
+" let g:auto_save_postsave_hook = 'call StageCommit()'
+"
+" " Shortcuts
+" :command! -nargs=* StageCommit :call StageCommit()
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --line-number --no-heading --color=always --smart-case -- %s *.txt || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--preview-window', 'default:60%', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-" Shortcuts
-:command! -nargs=* StageCommit :call StageCommit()
-map <Leader>l :ls <Return>
-map <Leader>s :StageCommit <Return>
-map <Leader>c :G commit <Return>
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>1)
+map <Leader>l :Lines <Return>
+map <Leader>b :Buffers! <Return>
+map <Leader>c :Commits <Return>
+map <Leader>r :RG <Return>
+" map <Leader>s :StageCommit <Return>
 map <Leader>P :G push <Return>
-map <Leader>p :Prosession
-map <Leader>g :G <Return>
+map <Leader>G :Git commit <Return>
+map <Leader>p :Prosession $HOME
+map <Leader>A :AutoSaveToggle <Return>
 map <silent> <Leader>d :bd<Return>
 
 " Use <C-l> for trigger snippet expand.
@@ -73,15 +94,18 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
 
-" let g:coc_snippet_next = '<tab>'
+" note that if you are using Plug mapping you should not use `noremap` mappings.
+nmap <F5> <Plug>(lcn-menu)
+" Or map each action separately
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent> gd <Plug>(lcn-definition)
+nmap <silent> <F2> <Plug>(lcn-rename)
