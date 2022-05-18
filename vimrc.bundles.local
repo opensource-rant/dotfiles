@@ -11,4 +11,18 @@ Plug 'tpope/vim-dispatch'
 Plug 'nicwest/vim-http'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" Plug 'Shougo/ddc.vim'
+" Plug 'vim-denops/denops.vim'
+
+" Install your sources
+" Plug 'Shougo/ddc-around'
+
+" Install your filters
+" Plug 'Shougo/ddc-matcher_head'
+" Plug 'Shougo/ddc-sorter_rank'
