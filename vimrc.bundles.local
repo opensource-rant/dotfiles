@@ -1,11 +1,14 @@
 Plug 'scrooloose/nerdtree'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'aklt/plantuml-syntax'
 Plug '907th/vim-auto-save'
 Plug 'jvirtanen/vim-hcl'
-" Plug 'jvirtanen/vim-fetch'
 Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
+Plug 'nicwest/vim-http'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+" Plug 'SirVer/ultisnips'
