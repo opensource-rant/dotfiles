@@ -10,7 +10,7 @@ set noshowmode
 "   return '%{ObsessionStatus()}'
 " endfunction
 let g:lightline = { 'colorscheme': 'github' } "'component': { 'session': 'LightlineObsessionStatus' } }
-
+"
 " Keep undo history when switching buffers
 set hidden
 "
@@ -22,7 +22,7 @@ map ; :
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
-" map :nt :NERDTree
+map :nt :NERDTree
 "
 "
 " Relative Linenumbers
@@ -56,15 +56,15 @@ endfunction
 "
 " " Shortcuts
 " :command! -nargs=* StageCommit :call StageCommit()
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --line-number --no-heading --color=always --smart-case -- %s *.txt || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--preview-window', 'default:60%', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+" function! RipgrepFzf(query, fullscreen)
+"   let command_fmt = 'rg --line-number --no-heading --color=always --smart-case -- %s *.txt || true'
+"   let initial_command = printf(command_fmt, shellescape(a:query))
+"   let reload_command = printf(command_fmt, '{q}')
+"   let spec = {'options': ['--preview-window', 'default:60%', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>1)
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>1)
 map <Leader>l :Lines <Return>
 map <Leader>b :Buffers! <Return>
 map <Leader>c :Commits <Return>
@@ -95,17 +95,19 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"     \ }
 
 " note that if you are using Plug mapping you should not use `noremap` mappings.
-nmap <F5> <Plug>(lcn-menu)
+" nmap <F5> <Plug>(lcn-menu)
 " Or map each action separately
-nmap <silent>K <Plug>(lcn-hover)
-nmap <silent> gd <Plug>(lcn-definition)
-nmap <silent> <F2> <Plug>(lcn-rename)
+" nmap <silent>K <Plug>(lcn-hover)
+" nmap <silent> gd <Plug>(lcn-definition)
+" nmap <silent> <F2> <Plug>(lcn-rename)
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
