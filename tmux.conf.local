@@ -83,8 +83,8 @@ set-window-option -g pane-base-index 1
 # setw -g pane-border-style fg=green,bg=black
 setw -g pane-active-border-style fg=colour255,bg=black
 setw -g automatic-rename off
-set -g pane-border-status top
-setw -g pane-border-format ' #{pane_title} | #{pane_current_path} '
+set -g pane-border-status bottom
+# setw -g pane-border-format ' #{pane_title} | #{pane_current_path} '
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-strategy-vim 'session'
 set -g @continuum-restore 'on'
