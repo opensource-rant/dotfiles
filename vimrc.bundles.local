@@ -5,17 +5,17 @@ Plug 'aklt/plantuml-syntax'
 Plug '907th/vim-auto-save'
 Plug 'jvirtanen/vim-hcl'
 Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
 Plug 'nicwest/vim-http'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'SirVer/ultisnips'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'tmux-plugins/vim-tmux'
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
 " Plug 'Shougo/ddc.vim'
 " Plug 'vim-denops/denops.vim'

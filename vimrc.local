@@ -111,3 +111,6 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 " nmap <silent> <F2> <Plug>(lcn-rename)
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+" make test commands execute using dispatch.vim
+let test#strategy = "vimterminal"
