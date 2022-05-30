@@ -6,13 +6,12 @@ global_ruby_version=3.0.1
 
 export PATH=/Users/$(whoami)/.rbenv/versions/$global_ruby_version/bin:$PATH
 
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# export ZPLUG_HOME=/opt/homebrew/opt/zplug
+# source $ZPLUG_HOME/init.zsh
 # zplug "wfxr/forgit"
 
 export GO111MODULE=on
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads
-nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
